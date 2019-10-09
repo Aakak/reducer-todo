@@ -1,5 +1,5 @@
 import React, { useState, useReducer } from "react";
-import { reducer, initialState } from "../reducers/reducer";
+// import { reducer, initialState } from "../reducers/reducer";
 
 const TodoForm = ({ dispatch }) => {
   const [input, setInput] = useState("");
@@ -27,12 +27,14 @@ const TodoForm = ({ dispatch }) => {
   return (
     <div>
       <form onSubmit={submitForm}>
-        <input name="item" 
+        <input className="input"  name="item" 
         onChange={handleChanges} 
         value={input} 
         />
-        <button>Add Todo</button>
-        <button onClick={clearCompleted}>Delete Purchased</button>
+        <button className="add-button">Add Item</button>
+        <div>
+        <button className="add-button" onClick={clearCompleted}>Delete Purchased</button>
+        </div>
       </form>
     </div>
   );
