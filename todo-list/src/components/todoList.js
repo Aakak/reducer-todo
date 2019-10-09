@@ -1,31 +1,21 @@
 import React, { useState, useReducer } from 'react';
-import { initialState } from "../reducers/reducer";
+import { initialState, reducer } from "../reducers/reducer";
+import TodoForm from './todoForm'
+import Todo from './todo'
 
-export const Todo = () => {
-    const [state, dispatch] = useReducer(reducer, initialState);
-    const [input, setInput] = useState("");
-
-    const handleChanges = event => {
-        setInput(event.target.value)
-    }
-
-    console.log(initialState)
-
+const TodoList = () => {
+    const [{todos}, dispatch] = useReducer(reducer, initialState);
     return (
+
     <div>
-        <form>
-            <input 
-            className="inputForm" 
-            type="text" 
-            value={input}
-            name= "item"
-            onChange={handleChanges}
-            >
-            </input>
-        </form>
-     <button onClick={() =>
-     dispatch({type: "ADD_NEW_ITEM" })} > Add Item
-     </button>
+         <TodoForm dispatch={dispatch} />
+     {todos.map(todo => {
+      return <Todo key={todo.id} todo={todo} dispatch={dispatch} />;    })}
     </div>
     )
 }
+
+
+export default TodoList
+
+
